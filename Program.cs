@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NewLINQ
 {
@@ -9,13 +10,10 @@ namespace NewLINQ
         {
             string[] teams = { "Бавария", "Боруссия", "Реал Мадрид", "Манчестер Сити", "ПСЖ", "Барселона" };
 
-            var selectedTeams = new List<string>();
-            foreach (string s in teams)
-            {
-                if (s.ToUpper().StartsWith("Б"))
-                    selectedTeams.Add(s);
-            }
-            selectedTeams.Sort();
+            var selectedTeams = from t in teams // определяем каждый объект из teams как t
+                                where t.ToUpper().StartsWith("Б") //фильтрация по критерию
+                                orderby t  // упорядочиваем по возрастанию
+                                select t; // выбираем объект
 
             foreach (string s in selectedTeams)
                 Console.WriteLine(s);
