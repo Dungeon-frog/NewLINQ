@@ -17,6 +17,24 @@ namespace NewLINQ
 
             foreach (string s in selectedTeams)
                 Console.WriteLine(s);
+
+            UserFilt();
+            NumFilt();
+
+        }
+        static void NumFilt()
+        {
+            int[] numbers = { 1, 2, 3, 4, 10, 34, 55, 66, 77, 88 };
+
+            IEnumerable<int> evens = from i in numbers
+                                     where i % 2 == 0 && i > 10
+                                     select i;
+            foreach (int i in evens)
+                Console.WriteLine(i);
+        }
+
+        static void UserFilt()
+        {
             List<User> users = new List<User>
             {
                 new User {Name="Том", Age=23, Languages = new List<string> {"английский", "немецкий" }},
